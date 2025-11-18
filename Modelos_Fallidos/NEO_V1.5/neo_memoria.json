@@ -1,0 +1,47 @@
+[
+  {
+    "timestamp": "2025-11-02 14:47:49",
+    "comando": "abre chrome",
+    "respuesta": "Abriendo Chrome"
+  },
+  {
+    "timestamp": "2025-11-02 14:47:49",
+    "comando": "busca python",
+    "respuesta": "Buscando Python"
+  },
+  {
+    "timestamp": "2025-11-02 14:51:35",
+    "comando": "necesito que escribas en una nota rapida lo siguiente : \"fuerza loba\"",
+    "respuesta": "Escribiendo texto en una nota rápida"
+  },
+  {
+    "timestamp": "2025-11-02 14:52:27",
+    "comando": "abre discord",
+    "respuesta": "Abriendo discord"
+  },
+  {
+    "timestamp": "2025-11-02 14:53:27",
+    "comando": "abre la calculadora y suma 1 y 4",
+    "respuesta": "Abriendo la calculadora y suma 1 y 4"
+  },
+  {
+    "timestamp": "2025-11-02 14:53:49",
+    "comando": "alir",
+    "respuesta": "Muestra el escritorio"
+  },
+  {
+    "timestamp": "2025-11-02 14:56:06",
+    "comando": "muestramé el escritorio",
+    "respuesta": "Muestra el escritorio"
+  },
+  {
+    "timestamp": "2025-11-02 14:56:20",
+    "comando": "abre y piso al estudio code",
+    "respuesta": "Abriendo y piso al estudio code"
+  },
+  {
+    "timestamp": "2025-11-02 14:56:37",
+    "comando": "abre b y c cold",
+    "respuesta": "Abriendo b y c cold"
+  }
+]

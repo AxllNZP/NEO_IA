@@ -1,0 +1,11 @@
+[2025-11-16 19:19:06] [INFO] Procesando comando: minimiza todo
+[2025-11-16 19:19:07] [INFO] Comando exitoso: minimiza todo
+[2025-11-16 19:20:20] [INFO] Procesando comando: abre notepad
+[2025-11-16 19:20:24] [INFO] Comando exitoso: abre notepad
+[2025-11-16 19:20:39] [INFO] Procesando comando: cierra lo que abriste
+[2025-11-16 19:21:02] [INFO] Comando exitoso: cierra lo que abriste
+[2025-11-16 19:32:34] [INFO] Procesando comando: abre el programa notepad y dentro del programa notepad escribe carro en codigo binario
+[2025-11-16 19:32:41] [INFO] Comando exitoso: abre el programa notepad y dentro del programa notepad escribe carro en codigo binario
+[2025-11-16 19:32:42] [INFO] Procesando comando: binario
+[2025-11-16 19:33:41] [INFO] Procesando comando: el programa notepad, abrelo, abre notepad
+[2025-11-16 19:34:26] [INFO] Comando exitoso: el programa notepad, abrelo, abre notepad
