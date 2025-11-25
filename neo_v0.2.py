@@ -1,4 +1,4 @@
-# neo_v1.py - NEO COMPLETO - Integración total
+# neo_v0.2.py - NEO COMPLETO - Integración de Memoria
 import whisper
 import pyaudio
 import wave

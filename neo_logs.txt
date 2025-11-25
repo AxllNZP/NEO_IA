@@ -9,3 +9,15 @@
 [2025-11-16 19:32:42] [INFO] Procesando comando: binario
 [2025-11-16 19:33:41] [INFO] Procesando comando: el programa notepad, abrelo, abre notepad
 [2025-11-16 19:34:26] [INFO] Comando exitoso: el programa notepad, abrelo, abre notepad
+[2025-11-18 18:57:41] [INFO] Procesando comando: abre notepad
+[2025-11-18 18:57:44] [INFO] Comando exitoso: abre notepad
+[2025-11-18 18:57:53] [INFO] Procesando comando: abre la aplicacion notepad
+[2025-11-18 18:57:57] [INFO] Comando exitoso: abre la aplicacion notepad
+[2025-11-18 18:58:02] [INFO] Procesando comando: abre notepad
+[2025-11-18 18:58:06] [INFO] Comando exitoso: abre notepad
+[2025-11-18 18:58:34] [INFO] Procesando comando: cierra la aplicacion que acabas de abrir
+[2025-11-18 18:58:50] [INFO] Comando exitoso: cierra la aplicacion que acabas de abrir
+[2025-11-18 19:03:27] [INFO] Procesando comando: abre notepad
+[2025-11-18 19:03:30] [INFO] Comando exitoso: abre notepad
+[2025-11-18 19:04:01] [INFO] Procesando comando: ahora cierra lo que acabas de abrir
+[2025-11-18 19:04:16] [INFO] Comando exitoso: ahora cierra lo que acabas de abrir
