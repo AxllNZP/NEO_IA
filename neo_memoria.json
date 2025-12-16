@@ -12,5 +12,12 @@
     "explicacion": "Cierrando la ventana o aplicación activa.",
     "num_acciones": 1,
     "exito": true
+  },
+  {
+    "timestamp": "2025-12-03 20:39:16",
+    "comando": "abre la calculadora",
+    "explicacion": "Abriendo la calculadora",
+    "num_acciones": 1,
+    "exito": true
   }
 ]
