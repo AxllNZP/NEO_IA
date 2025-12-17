@@ -25,3 +25,9 @@
 [2025-12-03 20:39:16] [INFO] Comando exitoso: abre la calculadora
 [2025-12-03 20:39:28] [INFO] Procesando comando: abrea la aplicacion calculadora
 [2025-12-03 20:39:58] [WARNING] No se generó plan para: abrea la aplicacion calculadora
+[2025-12-15 21:02:55] [CONTEXTO] Contexto actualizado: app = chrome
+[2025-12-15 21:02:55] [CONTEXTO] Contexto actualizado: busqueda = python tutorial
+[2025-12-15 21:02:55] [CONTEXTO] Contexto actualizado: app = notepad
+[2025-12-15 21:02:55] [CONTEXTO] Contexto limpiado
+[2025-12-15 21:18:00] [CONTEXTO] Contexto actualizado: app = la calculadora
+[2025-12-15 21:18:00] [CONTEXTO] Contexto actualizado: accion = abrir_programa

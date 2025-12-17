@@ -126,6 +126,238 @@ def mostrar_historial(cantidad=10):
     
     print("\n" + "=" * 60)
 
+
+# ============================================
+# CONTEXTO TEMPORAL (se pierde al cerrar NEO)
+# ============================================
+
+# Variable global que almacena el contexto
+_contexto_actual = {
+    'ultima_app': None,           # Última aplicación abierta
+    'ultima_url': None,           # Última URL visitada
+    'ultimo_archivo': None,       # Último archivo abierto
+    'ultima_accion': None,        # Última acción ejecutada
+    'ultima_busqueda': None,      # Última búsqueda en Google
+    'volumen_cambios': 0,         # Cuántas veces cambió el volumen
+    'ventanas_abiertas': [],      # Lista de ventanas abiertas
+}
+
+# ============================================
+# FUNCIÓN: actualizar_contexto
+# ============================================
+def actualizar_contexto(tipo, valor):
+    """
+    Actualiza el contexto con nueva información.
+    
+    Args:
+        tipo (str): Tipo de contexto ('app', 'url', 'archivo', 'accion')
+        valor: Valor a guardar
+    
+    Ejemplos:
+        actualizar_contexto('app', 'chrome')
+        actualizar_contexto('url', 'google.com')
+        actualizar_contexto('archivo', 'reporte.xlsx')
+    """
+    global _contexto_actual
+    
+    if tipo == 'app':
+        _contexto_actual['ultima_app'] = valor
+        # Agregar a lista de ventanas abiertas si no está
+        if valor and valor not in _contexto_actual['ventanas_abiertas']:
+            _contexto_actual['ventanas_abiertas'].append(valor)
+    
+    elif tipo == 'url':
+        _contexto_actual['ultima_url'] = valor
+    
+    elif tipo == 'archivo':
+        _contexto_actual['ultimo_archivo'] = valor
+    
+    elif tipo == 'accion':
+        _contexto_actual['ultima_accion'] = valor
+    
+    elif tipo == 'busqueda':
+        _contexto_actual['ultima_busqueda'] = valor
+    
+    elif tipo == 'volumen':
+        _contexto_actual['volumen_cambios'] += 1
+    
+    # Guardar en log
+    guardar_log(f"Contexto actualizado: {tipo} = {valor}", "CONTEXTO")
+
+# ============================================
+# FUNCIÓN: obtener_contexto
+# ============================================
+def obtener_contexto(tipo=None):
+    """
+    Obtiene información del contexto.
+    
+    Args:
+        tipo (str): Tipo específico o None para todo
+    
+    Returns:
+        dict o valor: Contexto completo o valor específico
+    
+    Ejemplos:
+        obtener_contexto('app')  → 'chrome'
+        obtener_contexto()       → {dict completo}
+    """
+    global _contexto_actual
+    
+    if tipo:
+        return _contexto_actual.get(tipo)
+    else:
+        return _contexto_actual.copy()
+
+# ============================================
+# FUNCIÓN: limpiar_contexto
+# ============================================
+def limpiar_contexto():
+    """
+    Limpia el contexto (útil para empezar de cero)
+    """
+    global _contexto_actual
+    
+    _contexto_actual = {
+        'ultima_app': None,
+        'ultima_url': None,
+        'ultimo_archivo': None,
+        'ultima_accion': None,
+        'ultima_busqueda': None,
+        'volumen_cambios': 0,
+        'ventanas_abiertas': [],
+    }
+    
+    guardar_log("Contexto limpiado", "CONTEXTO")
+
+# ============================================
+# FUNCIÓN: generar_resumen_contexto
+# ============================================
+def generar_resumen_contexto():
+    """
+    Genera un resumen legible del contexto actual.
+    
+    Returns:
+        str: Resumen del contexto
+    """
+    global _contexto_actual
+    
+    resumen = "CONTEXTO ACTUAL:\n"
+    
+    if _contexto_actual['ultima_app']:
+        resumen += f"- Última app: {_contexto_actual['ultima_app']}\n"
+    
+    if _contexto_actual['ultima_url']:
+        resumen += f"- Última URL: {_contexto_actual['ultima_url']}\n"
+    
+    if _contexto_actual['ultimo_archivo']:
+        resumen += f"- Último archivo: {_contexto_actual['ultimo_archivo']}\n"
+    
+    if _contexto_actual['ultima_busqueda']:
+        resumen += f"- Última búsqueda: {_contexto_actual['ultima_busqueda']}\n"
+    
+    if _contexto_actual['ventanas_abiertas']:
+        resumen += f"- Ventanas abiertas: {', '.join(_contexto_actual['ventanas_abiertas'])}\n"
+    
+    if not any([
+        _contexto_actual['ultima_app'],
+        _contexto_actual['ultima_url'],
+        _contexto_actual['ultimo_archivo'],
+        _contexto_actual['ultima_busqueda']
+    ]):
+        resumen += "- Sin contexto previo\n"
+    
+    return resumen
+
+# ============================================
+# FUNCIÓN: hay_contexto_previo
+# ============================================
+def hay_contexto_previo():
+    """
+    Verifica si hay contexto guardado.
+    
+    Returns:
+        bool: True si hay contexto, False si no
+    """
+    global _contexto_actual
+    
+    return any([
+        _contexto_actual['ultima_app'],
+        _contexto_actual['ultima_url'],
+        _contexto_actual['ultimo_archivo'],
+        _contexto_actual['ultima_busqueda']
+    ])
+
+
+# ============================================
+# EXPLICACIÓN DE USO:
+# ============================================
+
+"""
+📝 CÓMO USAR ESTAS FUNCIONES:
+
+1. CUANDO NEO ABRE UNA APP:
+   from neo_memoria import actualizar_contexto
+   actualizar_contexto('app', 'chrome')
+
+2. CUANDO NEO BUSCA ALGO:
+   actualizar_contexto('busqueda', 'python tutorial')
+
+3. CUANDO NECESITAS EL CONTEXTO:
+   from neo_memoria import obtener_contexto
+   ultima_app = obtener_contexto('app')
+   print(f"Última app: {ultima_app}")
+
+4. PARA VER TODO EL CONTEXTO:
+   contexto = obtener_contexto()
+   print(contexto)
+
+5. PARA LIMPIAR:
+   from neo_memoria import limpiar_contexto
+   limpiar_contexto()
+"""
+
+
+# ============================================
+# PRUEBA RÁPIDA
+# ============================================
+
+if __name__ == "__main__":
+    print("=" * 60)
+    print("PRUEBA DE CONTEXTO")
+    print("=" * 60)
+    
+    # Simular comandos
+    print("\n1. Abriendo Chrome...")
+    actualizar_contexto('app', 'chrome')
+    
+    print("\n2. Buscando Python...")
+    actualizar_contexto('busqueda', 'python tutorial')
+    
+    print("\n3. Abriendo Notepad...")
+    actualizar_contexto('app', 'notepad')
+    
+    # Ver contexto
+    print("\n" + "=" * 60)
+    print("CONTEXTO ACTUAL:")
+    print("=" * 60)
+    print(generar_resumen_contexto())
+    
+    # Consultar específico
+    print("\n" + "=" * 60)
+    print("CONSULTAS ESPECÍFICAS:")
+    print("=" * 60)
+    print(f"Última app: {obtener_contexto('app')}")
+    print(f"Última búsqueda: {obtener_contexto('busqueda')}")
+    print(f"Ventanas abiertas: {obtener_contexto('ventanas_abiertas')}")
+    
+    # Limpiar
+    print("\n" + "=" * 60)
+    print("LIMPIANDO CONTEXTO...")
+    print("=" * 60)
+    limpiar_contexto()
+    print(generar_resumen_contexto())
+
+
 if __name__ == "__main__":
     print("NEO - Sistema de Memoria")
     print("\nOpciones:")

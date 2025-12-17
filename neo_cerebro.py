@@ -3,6 +3,7 @@ import subprocess
 import json
 import re
 from datetime import datetime
+from neo_memoria import obtener_contexto, generar_resumen_contexto, hay_contexto_previo
 
 print("=" * 60)
 print("NEO - Sistema de Decisiones v1.0")
@@ -215,8 +216,92 @@ def extraer_json(texto):
     
     return None
 
+def detectar_referencia_contextual(comando):
+    """
+    Detecta si el comando hace referencia al contexto.
+    
+    Args:
+        comando (str): Comando del usuario
+    
+    Returns:
+        tuple: (es_contextual, comando_reformulado)
+    
+    Ejemplos:
+        "cierra lo que abriste" → (True, "cierra chrome")
+        "abre chrome" → (False, "abre chrome")
+    """
+    comando_lower = comando.lower()
+    
+    # Palabras clave que indican referencia al pasado
+    palabras_contextuales = [
+        'lo que', 'lo mismo', 'eso', 'esa', 'ese',
+        'lo anterior', 'la anterior', 'el anterior',
+        'lo último', 'la última', 'el último'
+    ]
+    
+    # Verificar si hay palabras contextuales
+    tiene_referencia = any(palabra in comando_lower for palabra in palabras_contextuales)
+    
+    if not tiene_referencia:
+        return False, comando
+    
+    # Si hay referencia, intentar reformular
+    if not hay_contexto_previo():
+        print("⚠️  Comando contextual sin contexto previo")
+        return False, comando
+    
+    # Obtener contexto
+    ultima_app = obtener_contexto('app')
+    ultima_url = obtener_contexto('url')
+    ultima_busqueda = obtener_contexto('busqueda')
+    ultimo_archivo = obtener_contexto('archivo')
+    
+    # CASO 1: "cierra lo que abriste" / "cierra eso"
+    if any(palabra in comando_lower for palabra in ['cierra', 'cerrar']):
+        if ultima_app:
+            comando_reformulado = f"cierra {ultima_app}"
+            print(f"💡 Contexto: '{comando}' → '{comando_reformulado}'")
+            return True, comando_reformulado
+    
+    # CASO 2: "abre lo mismo" / "abre eso"
+    if any(palabra in comando_lower for palabra in ['abre', 'abrir']):
+        if ultima_app:
+            comando_reformulado = f"abre {ultima_app}"
+            print(f"💡 Contexto: '{comando}' → '{comando_reformulado}'")
+            return True, comando_reformulado
+    
+    # CASO 3: "busca lo mismo" / "busca eso"
+    if any(palabra in comando_lower for palabra in ['busca', 'buscar']):
+        if ultima_busqueda:
+            comando_reformulado = f"busca {ultima_busqueda}"
+            print(f"💡 Contexto: '{comando}' → '{comando_reformulado}'")
+            return True, comando_reformulado
+    
+    # CASO 4: "abre la misma página" / "vuelve a esa página"
+    if any(palabra in comando_lower for palabra in ['página', 'pagina', 'url', 'sitio', 'web']):
+        if ultima_url:
+            comando_reformulado = f"abre {ultima_url}"
+            print(f"💡 Contexto: '{comando}' → '{comando_reformulado}'")
+            return True, comando_reformulado
+    
+    # Si no se pudo reformular específicamente
+    return False, comando
+
 def procesar_comando(comando_voz, contexto_pantalla=""):
     print(f"\nAnalizando comando: '{comando_voz}'")
+
+    es_contextual, comando_reformulado = detectar_referencia_contextual(comando_voz)
+    
+    if es_contextual:
+        # Usar el comando reformulado
+        comando_voz = comando_reformulado
+        print(f"   (Usando contexto)")
+
+    if hay_contexto_previo():
+        resumen_contexto = generar_resumen_contexto()
+        print(f"\n📋 {resumen_contexto}")
+    
+
     
     plan_especial = detectar_comando_especial(comando_voz)
     if plan_especial:
@@ -231,6 +316,15 @@ Tu tarea: Analizar el comando del usuario y decidir qué funciones ejecutar.
 
 COMANDO DEL USUARIO:
 "{comando_voz}"
+"""
+    
+    
+    
+    if hay_contexto_previo():
+        prompt += f"""
+        CONTEXTO RECIENTE:
+    {generar_resumen_contexto()}
+Usa este contexto si el comando hace referencia al pasado.
 """
     
     if contexto_pantalla:
@@ -299,6 +393,14 @@ Responde SOLO con el JSON:"""
     except Exception as e:
         print(f"Error: {e}")
         return None
+    
+def mostrar_contexto():
+    """
+    Muestra el contexto actual (útil para debugging).
+    """
+    print("\n" + "=" * 60)
+    print(generar_resumen_contexto())
+    print("=" * 60)
 
 def ejecutar_plan(plan):
     if not plan or 'acciones' not in plan:

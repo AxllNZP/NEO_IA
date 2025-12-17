@@ -4,6 +4,7 @@ import subprocess
 import time
 import os
 from datetime import datetime
+from neo_memoria import actualizar_contexto
 
 print("=" * 60)
 print("NEO - Sistema de Control v1.0")
@@ -28,12 +29,18 @@ def buscar_y_abrir(programa):
 
 def abrir_chrome():
     buscar_y_abrir('chrome')
+    actualizar_contexto('app', 'chrome')
+    actualizar_contexto('accion', 'abrir_programa')
 
 def abrir_notepad():
     buscar_y_abrir('notepad')
+    actualizar_contexto('app', 'notepad')
+    actualizar_contexto('accion', 'abrir_programa')
 
 def abrir_calculadora():
     buscar_y_abrir('calc')
+    actualizar_contexto('app', 'calculadora')
+    actualizar_contexto('accion', 'abrir_programa')
 
 def abrir_explorador_archivos():
     print("📁 Abriendo Explorador...")
@@ -54,6 +61,8 @@ def abrir_cmd():
 def abrir_programa(nombre):
     print(f"Abriendo {nombre}...")
     buscar_y_abrir(nombre)
+    actualizar_contexto('app', nombre)
+    actualizar_contexto('accion', 'abrir_programa')
 
 def buscar_en_google(query):
     print(f" Buscando en Google: {query}")
@@ -62,6 +71,10 @@ def buscar_en_google(query):
     pyautogui.write(query, interval=0.05)
     pyautogui.press('enter')
     print("Búsqueda completada")
+
+    actualizar_contexto('busqueda', query)
+    actualizar_contexto('url', f'google.com/search?q={query}')
+    actualizar_contexto('accion', 'buscar_web')
 
 def abrir_url(url):
     print(f" Abriendo: {url}")
@@ -76,6 +89,8 @@ def abrir_url(url):
     pyautogui.write(url, interval=0.05)
     pyautogui.press('enter')
     print(f"{url} abierto")
+    actualizar_contexto('url', url)
+    actualizar_contexto('accion', 'abrir_url')
 
 def abrir_youtube(busqueda=""):
     if busqueda:
@@ -98,6 +113,7 @@ def cerrar_ventana_actual():
     pyautogui.hotkey('alt', 'f4')
     time.sleep(0.3)
     print("Ventana cerrada")
+
 
 def cambiar_ventana():
     print(" Cambiando de ventana...")
@@ -203,6 +219,8 @@ def crear_nota_rapida(texto):
             f.write(texto)
         print(f"Nota creada: {nombre}.txt")
         os.startfile(filepath)
+        actualizar_contexto('archivo', filepath)
+        actualizar_contexto('accion', 'crear_archivo')
     except Exception as e:
         print(f"Error: {e}")
 
@@ -212,6 +230,8 @@ def volumen_subir(veces=1):
         pyautogui.press('volumeup')
         time.sleep(0.1)
     print("Volumen subido")
+    actualizar_contexto('volumen', veces)
+    actualizar_contexto('accion', 'volumen_subir')
 
 def volumen_bajar(veces=1):
     print(f"Bajando volumen ({veces}x)...")
@@ -219,6 +239,8 @@ def volumen_bajar(veces=1):
         pyautogui.press('volumedown')
         time.sleep(0.1)
     print("Volumen bajado")
+    actualizar_contexto('volumen', -veces)
+    actualizar_contexto('accion', 'volumen_bajar')
 
 def volumen_silenciar():
     print("Alternando silencio...")
