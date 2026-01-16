@@ -5,6 +5,15 @@ import re
 from datetime import datetime
 from neo_memoria import obtener_contexto, generar_resumen_contexto, hay_contexto_previo
 
+# Importar sistema de visión
+try:
+    from neo_vision import ver_pantalla, obtener_ultima_descripcion
+    VISION_DISPONIBLE = True
+    print("✓ Sistema de visión cargado")
+except ImportError:
+    VISION_DISPONIBLE = False
+    print("Sistema de visión no disponible")
+
 print("=" * 60)
 print("NEO - Sistema de Decisiones v1.0")
 print("=" * 60)

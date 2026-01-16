@@ -1,6 +1,6 @@
 # neo_gui_integrado.py - GUI Integrada con Sistema NEO Completo
 """
-NEO GUI v2.0 - Totalmente Integrado
+NEO GUI v0.2 - Totalmente Integrado
 Conecta la interfaz gráfica con todo el sistema NEO:
 - Reconocimiento de voz (Whisper)
 - Cerebro IA (Llama)
@@ -59,7 +59,7 @@ ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
 print("=" * 60)
-print("NEO GUI v2.0 - COMPLETO E INTEGRADO")
+print("NEO GUI v0.2 - COMPLETO E INTEGRADO")
 print("=" * 60)
 
 # ==========================================
@@ -107,7 +107,7 @@ class NEOAppIntegrado(ctk.CTk):
         super().__init__()
         
         # Configuración de ventana
-        self.title("NEO - Asistente Inteligente v2.0 [COMPLETO]")
+        self.title("NEO")
         self.geometry("850x750")
         self.minsize(750, 650)
         
@@ -175,14 +175,14 @@ class NEOAppIntegrado(ctk.CTk):
         
         title_label = ctk.CTkLabel(
             header_frame,
-            text="🤖 NEO [COMPLETO]",
+            text="Implementacion NEO V0.2",
             font=ctk.CTkFont(size=30, weight="bold")
         )
         title_label.pack(side="left", padx=20, pady=15)
         
         self.status_label = ctk.CTkLabel(
             header_frame,
-            text="⚫ Inactivo",
+            text=" Inactivo",
             font=ctk.CTkFont(size=16)
         )
         self.status_label.pack(side="right", padx=20, pady=15)

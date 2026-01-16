@@ -19,5 +19,47 @@
     "explicacion": "Abriendo la calculadora",
     "num_acciones": 1,
     "exito": true
+  },
+  {
+    "timestamp": "2025-12-17 18:39:04",
+    "comando": "abre chrome",
+    "explicacion": "Abriendo chrome",
+    "num_acciones": 1,
+    "exito": true
+  },
+  {
+    "timestamp": "2025-12-17 18:46:36",
+    "comando": "abre chrome",
+    "explicacion": "Abriendo chrome",
+    "num_acciones": 1,
+    "exito": true
+  },
+  {
+    "timestamp": "2025-12-17 18:46:50",
+    "comando": "sube volumen",
+    "explicacion": "Subiendo volumen 3 veces",
+    "num_acciones": 1,
+    "exito": true
+  },
+  {
+    "timestamp": "2025-12-17 18:47:02",
+    "comando": "baja la mitad del volumen",
+    "explicacion": "Bajando volumen 3 veces",
+    "num_acciones": 1,
+    "exito": true
+  },
+  {
+    "timestamp": "2025-12-17 18:47:44",
+    "comando": "minimiza todo",
+    "explicacion": "Minimizando todas las ventanas",
+    "num_acciones": 1,
+    "exito": true
+  },
+  {
+    "timestamp": "2025-12-17 18:47:56",
+    "comando": "abre roblox",
+    "explicacion": "Abriendo roblox",
+    "num_acciones": 1,
+    "exito": true
   }
 ]

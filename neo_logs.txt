@@ -31,3 +31,17 @@
 [2025-12-15 21:02:55] [CONTEXTO] Contexto limpiado
 [2025-12-15 21:18:00] [CONTEXTO] Contexto actualizado: app = la calculadora
 [2025-12-15 21:18:00] [CONTEXTO] Contexto actualizado: accion = abrir_programa
+[2025-12-17 18:33:51] [CONTEXTO] Contexto actualizado: app = chrome
+[2025-12-17 18:33:51] [CONTEXTO] Contexto actualizado: accion = abrir_programa
+[2025-12-17 18:34:10] [CONTEXTO] Contexto actualizado: app = calculadora
+[2025-12-17 18:34:10] [CONTEXTO] Contexto actualizado: accion = abrir_programa
+[2025-12-17 18:39:04] [CONTEXTO] Contexto actualizado: app = chrome
+[2025-12-17 18:39:04] [CONTEXTO] Contexto actualizado: accion = abrir_programa
+[2025-12-17 18:46:36] [CONTEXTO] Contexto actualizado: app = chrome
+[2025-12-17 18:46:36] [CONTEXTO] Contexto actualizado: accion = abrir_programa
+[2025-12-17 18:46:50] [CONTEXTO] Contexto actualizado: volumen = 3
+[2025-12-17 18:46:50] [CONTEXTO] Contexto actualizado: accion = volumen_subir
+[2025-12-17 18:47:02] [CONTEXTO] Contexto actualizado: volumen = -3
+[2025-12-17 18:47:02] [CONTEXTO] Contexto actualizado: accion = volumen_bajar
+[2025-12-17 18:47:56] [CONTEXTO] Contexto actualizado: app = roblox
+[2025-12-17 18:47:56] [CONTEXTO] Contexto actualizado: accion = abrir_programa
